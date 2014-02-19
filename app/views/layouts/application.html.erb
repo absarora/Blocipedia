@@ -7,13 +7,37 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <div class="container"> 
+    <div id="nav" class="sixteen columns">
+      <ul>
+        <li><%= link_to "Home", welcome_index_path, class: 'one columns' %></li>
+        <li><%= link_to "About", welcome_about_path, class: 'one columns' %></li>
+           <% if current_user %>
+             Hello <%= current_user.email %>! <%= link_to "Sign out", destroy_user_session_path, method: :delete %>
+           <% else %>
+             <%= link_to "Sign In", new_user_session_path %>
+           <% end %>
+      </ul>
+    </div>
 
-  <ul>
-        <li><%= link_to "Home", welcome_index_path %></li>
-        <li><%= link_to "About", welcome_about_path %></li>
-    </ul>
+      <% if flash[:notice] %>
+        <div>
+          <button>&times;</button>
+          <%= flash[:notice] %>
+        </div>
+      <% elsif flash[:error] %>
+        <div>
+          <button>&times;</button>
+          <%= flash[:error] %>
+        </div>
+      <% elsif flash[:alert] %>
+        <div>
+          <button>&times;</button>
+          <%= flash[:alert] %>
+        </div>
+      <% end %>
 
-<%= yield %>
-
+      <%= yield %>
+  </div>
 </body>
 </html>
