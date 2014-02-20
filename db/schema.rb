@@ -11,7 +11,19 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140218193712) do
+ActiveRecord::Schema.define(:version => 20140220003357) do
+
+  create_table "pages", :force => true do |t|
+    t.string   "title"
+    t.text     "body"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.integer  "wiki_id"
+    t.integer  "user_id"
+  end
+
+  add_index "pages", ["user_id"], :name => "index_pages_on_user_id"
+  add_index "pages", ["wiki_id"], :name => "index_pages_on_wiki_id"
 
   create_table "users", :force => true do |t|
     t.string   "name"
@@ -31,9 +43,18 @@ ActiveRecord::Schema.define(:version => 20140218193712) do
     t.string   "unconfirmed_email"
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
+    t.string   "role"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
+
+  create_table "wikis", :force => true do |t|
+    t.string   "name"
+    t.boolean  "public",      :default => true
+    t.text     "description"
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
+  end
 
 end

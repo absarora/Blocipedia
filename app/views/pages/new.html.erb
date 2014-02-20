@@ -1,0 +1,12 @@
+<h1>New Page</h1>
+<div>
+  <%= form_for [@wiki, @page] do |f| %>
+    <%= f.label :title %>
+    <%= f.text_field :title %>
+
+    <%= f.label :body %>
+    <%= f.text_area :body %>
+
+    <%= f.submit "Save" %>
+  <% end %>
+</div>

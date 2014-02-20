@@ -1,0 +1,28 @@
+<h1><%= @wiki.name %></h1>
+
+<% if can? :update, @wiki %>
+  <%= link_to "Edit Wiki", edit_wiki_path, class: 'button' %>
+<% end %>
+
+<div class="row">
+  <div class="span8">
+    <p><%= @wiki.description %></p>
+    <% @pages.each do |page| %>
+      <div class="media">
+        <div class="media-body">
+          <h4 class="media-heading">
+            <%= link_to page.title, [@wiki, page] %>
+          </h4>
+          <small>
+            submitted <%= time_ago_in_words(page.created_at) %> ago by <%= page.user.name %><br/>
+          </small>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  <div class="span4">
+    <% if can? :create, Page %>
+      <%= link_to "New Page", new_wiki_page_path(@wiki), class: 'button' %>
+    <% end %>
+  </div>
+</div>
