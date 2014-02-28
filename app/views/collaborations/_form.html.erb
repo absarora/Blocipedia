@@ -1,0 +1,13 @@
+<%= form_for [wiki, collaboration] do |f| %>
+  <%# Grab all the users and iterate through them %>
+  <% User.all.each do |user| %>
+  <%# for each user, create a check box with that user's id %>
+  
+    <%= check_box_tag "collaboration[user_id][]", user.id, wiki.users.include?(user) %>
+    <%# print the name of the user %>
+    <%= user.name %>
+  <%# end the loop %>
+  <% end %>
+
+<%= f.submit "Add collaborators", class: 'button' %>
+<% end %>

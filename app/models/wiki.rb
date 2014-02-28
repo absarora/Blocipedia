@@ -1,4 +1,6 @@
 class Wiki < ActiveRecord::Base
-  has_many :pages
   attr_accessible :description, :name, :public
+  has_many :collaborations
+  has_many :users, through: :collaborations
+  belongs_to :user
 end

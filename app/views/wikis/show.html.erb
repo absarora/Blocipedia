@@ -6,23 +6,12 @@
 
 <div class="row">
   <div class="span8">
-    <p><%= @wiki.description %></p>
-    <% @pages.each do |page| %>
-      <div class="media">
-        <div class="media-body">
-          <h4 class="media-heading">
-            <%= link_to page.title, [@wiki, page] %>
-          </h4>
-          <small>
-            submitted <%= time_ago_in_words(page.created_at) %> ago by <%= page.user.name %><br/>
-          </small>
-        </div>
-      </div>
-    <% end %>
+    <p><%= markdown @wiki.description %></p>
+    
   </div>
-  <div class="span4">
-    <% if can? :create, Page %>
-      <%= link_to "New Page", new_wiki_page_path(@wiki), class: 'button' %>
-    <% end %>
-  </div>
+  
+</div>
+
+<div class="row">
+  <%= render "collaborations/form", wiki: @wiki, collaboration: @collaboration %>
 </div>

@@ -5,22 +5,22 @@ class WikisController < ApplicationController
 
   def new
     @wiki = Wiki.new
-    authorize! :create, @wiki, message: "You need to be an admin to do that."
+    authorize! :create, @wiki, message: "You need to be signed up to create wikis."
   end
 
   def show
     @wiki = Wiki.find(params[:id])
-    @pages = @wiki.pages
+    @collaboration = Collaboration.new
   end
 
   def edit
     @wiki = Wiki.find(params[:id])
-    authorize! :update, @wiki, message: "You need to be an admin to do that."
+    authorize! :update, @wiki, message: "You need to own the wiki to update it."
   end
 
   def create
-    @wiki = Wiki.new(params[:wiki])
-    authorize! :create, @wiki, message: "You need to be an admin to do that."
+    @wiki = current_user.wikis.build(params[:wiki])
+    authorize! :create, @wiki
     if @wiki.save
       redirect_to @wiki, notice: "Wiki was saved successfully."
     else

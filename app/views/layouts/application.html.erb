@@ -10,8 +10,9 @@
   <div class="container"> 
     <div id="nav" class="sixteen columns">
       <ul>
-        <li><%= link_to "Blocipedia", root_path, class: 'two columns' %></li>
-        <li><%= link_to "About", about_path, class: 'one columns' %></li>
+        <li><%= link_to "Blocipedia", root_path %></li>
+        <li><%= link_to "About", about_path %></li>
+        <li><%= link_to "Wikis", wikis_path %></li>
            <% if current_user %>
              Hello <%= current_user.name %>! <%= link_to "Sign out", destroy_user_session_path, method: :delete %>
            <% else %>

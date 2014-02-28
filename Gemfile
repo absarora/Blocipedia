@@ -21,7 +21,6 @@ end
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
-  gem 'skeleton-rails'
 
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
   # gem 'therubyracer', :platforms => :ruby
@@ -33,6 +32,9 @@ gem 'jquery-rails'
 gem 'devise' #authentication
 gem 'faker' #create fake data
 gem 'cancan' #authorize users
+gem 'skeleton-rails' #custom CSS
+gem 'redcarpet' #markdown syntax
+gem 'stripe' #paid transactions
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

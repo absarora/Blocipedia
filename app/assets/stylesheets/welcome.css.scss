@@ -2,8 +2,13 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+h1{
+  font-weight: bold;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
 h3{
-  text-align: center;
   font-weight: bold;
   margin-bottom: 40px;
 }
@@ -12,9 +17,18 @@ h3{
   border: solid;
   margin: 0 auto;
   padding: 5px;
-  height: 200px;
-  width: 60%;
+  height: 400px;
+  width: 80%;
   text-align: center;
+}
+
+.column-left {
+  float: left;
+  width: 50%;
+}
+.column-right {
+  float: right;
+  width: 50%;
 }
 
 .container {
@@ -29,21 +43,9 @@ h3{
     display: inline;
     margin: 0 20px 0 0;
 }
-#public {
-  text-align: center;
-}
-#private {
-  text-align: center;
-}
 
 p {
-  margin-top: 20px;
-}
-p #para {
-  margin-top: 20px;
-  font-size: 18px;
-}
-img {
-  width: 100px;
-  height: 100px;
+  font-size: 20px;
+  margin-top: 80px;
+  margin-bottom: 10px;
 }

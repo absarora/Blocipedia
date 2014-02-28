@@ -3,16 +3,19 @@ class Ability
 
   def initialize(user)
     user ||= User.new # guest user
+    alias_action :edit, :to => :update
+    alias_action :new, :to => :create
+    alias_action :update, :destroy, :to => :modify
 
     # if a member, they can manage their own pages 
     # (or create new ones)
     if user.role? :member
-      can :manage, Page, :user_id => user.id
+      can :manage, Wiki, :user_id => user.id
     end
 
     # Moderators can delete any post
     if user.role? :moderator
-      can :destroy, Page
+      can :modify, Wiki
     end
 
     # Admins can do anything
@@ -20,6 +23,11 @@ class Ability
       can :manage, :all
     end
 
-    can :read, :all
+    if user.role? :premium
+      can :manage, Wiki, :user_id => user.id
+      can :manage, Collaboration, :user_id => user.id
+    end
+
+    can :read, Wiki, public: true
   end
 end
