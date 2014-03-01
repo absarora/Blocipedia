@@ -20,7 +20,7 @@ class ChargesController < ApplicationController
     )
 
     # update user to set premium to true
-    current_user.role = :premium
+    current_user.role = "premium"
     current_user.save!
 
   rescue Stripe::CardError => e
