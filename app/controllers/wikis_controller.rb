@@ -5,12 +5,15 @@ class WikisController < ApplicationController
 
   def new
     @wiki = Wiki.new
+    @wiki = current_user.wikis.build(params[:wiki])
     authorize! :create, @wiki, message: "You need to be signed up to create wikis."
   end
 
   def show
     @wiki = Wiki.find(params[:id])
     @collaboration = Collaboration.new
+    @collaboration = current_user.collaborations.build(params[:collaboration])
+
   end
 
   def edit

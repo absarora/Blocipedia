@@ -13,7 +13,5 @@
 </div>
 
 <div class="row">
-  <% if can? :manage, @collaboration %>
   <%= render "collaborations/form", wiki: @wiki, collaboration: @collaboration %>
-  <% end %>
 </div>

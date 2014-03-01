@@ -11,7 +11,6 @@ class Ability
     # (or create new ones)
     if user.role? :member
       can :manage, Wiki, :user_id => user.id
-      can :create, Wiki
     end
 
     # Moderators can delete any post
