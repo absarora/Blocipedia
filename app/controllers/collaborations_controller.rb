@@ -6,6 +6,7 @@ class CollaborationsController < ApplicationController
   end
 
   def create
+    @wiki.collaborations.delete_all
     @collaborations = []
     params[:collaboration][:user_id].each do |user_id|
       @collaborations << Collaboration.create(user_id: user_id, wiki_id: @wiki.id)

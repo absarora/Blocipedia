@@ -1,6 +1,7 @@
 class ChargesController < ApplicationController
 
   def new
+    Rails.logger.info ">>>> Current User: #{current_user}"
   end
 
   def create
@@ -8,7 +9,7 @@ class ChargesController < ApplicationController
     @amount = 500
 
     customer = Stripe::Customer.create(
-      :email => 'example@stripe.com',
+      :email => current_user.email,
       :card  => params[:stripeToken]
     )
 
@@ -20,8 +21,9 @@ class ChargesController < ApplicationController
     )
 
     # update user to set premium to true
-    current_user.role = "premium"
-    current_user.save!
+    current_user.update_attribute :role, "premium"
+
+    redirect_to wikis_path, notice: "Thank you for subscribing! You can start creating wikis now."
 
   rescue Stripe::CardError => e
     flash[:error] = e.message

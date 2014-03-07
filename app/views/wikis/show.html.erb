@@ -13,5 +13,7 @@
 </div>
 
 <div class="row">
+  <% if (@wiki.user == current_user) && (can? :manage, @collaboration) %>
   <%= render "collaborations/form", wiki: @wiki, collaboration: @collaboration %>
+  <% end %>
 </div>

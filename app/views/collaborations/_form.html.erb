@@ -1,4 +1,4 @@
-<%if can? :update, @collaboration %>
+
 <%= form_for [wiki, collaboration] do |f| %>
   <%# Grab all the users and iterate through them %>
   <% User.all.each do |user| %>
@@ -11,5 +11,5 @@
   <% end %>
 
 <%= f.submit "Add collaborators", class: 'button' %>
-<% end %>
+
 <% end %>

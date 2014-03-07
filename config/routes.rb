@@ -2,7 +2,7 @@ Blocipedia::Application.routes.draw do
 
   get "collaborations/create"
 
-  devise_for :users
+  devise_for :users, :controllers => {:registrations => "users/registrations"}
 
   resources :charges
 
